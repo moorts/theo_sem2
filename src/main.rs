@@ -36,5 +36,7 @@ fn main() {
     bst.push(3);
     bst.push(1);
     bst.push(8);
+    bst.push(7);
     binary_tree::bst_inorder(&bst);
+    println!("{}", bst.size());
 }

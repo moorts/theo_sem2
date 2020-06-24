@@ -55,7 +55,77 @@ pub mod binary_tree {
                 None => self.value = Some(value),
             }
         }
+
+        pub fn contains(&self, value: i32) -> bool {
+            match self.value {
+                Some(x) => {
+                    if x == value {
+                        return true;
+                    }
+                    else if value < x {
+                        match &*self.left {
+                            Some(y) => return y.contains(value),
+                            None => return false,
+                        }
+                    } else {
+                        match &*self.right {
+                            Some(y) => return y.contains(value),
+                            None => return false,
+                        }
+                    }
+                },
+                None => return false,
+            }
+        }
+
+        pub fn size(&self) -> usize {
+            let mut size = 0;
+            match self.value {
+                Some(x) => size = 1,
+                None => (),
+            }
+            match &*self.left {
+                Some(x) => size += x.size(),
+                None => (),
+            }
+            match &*self.right {
+                Some(x) => size += x.size(),
+                None => (),
+            }
+            size
+        }
+
+        pub fn remove(&self, value:i32) -> bool {
+            match self.value {
+                Some(x) => {
+                    if x == value {
+                        let mut lsize = 0;
+                        let mut rsize = 0;
+                        match &*self.left {
+                            Some(y) => lsize = y.size(),
+                            None => (),
+                        }
+                        match &*self.right {
+                            Some(y) => lsize = y.size(),
+                            None => (),
+                        }
+                        if lsize <= rsize {
+
+                        } else {
+
+                        }
+                    }
+                },
+                None => return false,
+            }
+            return true;
+        }
+
+        pub fn remove_root_and_swap(&self, left: bool) {
+            let root = self.value.unwrap();
+        }
     }
+
 
     pub fn inorder(tree: &BinaryTree) {
         match &*tree.left {
